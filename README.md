@@ -1,0 +1,35 @@
+## Overview
+This repository contains the source code for the paper **"Microbiome-Based Classification of Soil Conditions Using Machine Learning and Explainable AI"**. The project focuses on iron deficiency detection in Hyperspectral-imaging datasets for tomato, cucumber, barley, maize, and lupine.
+
+
+## Dataset Overview
+
+## Phase 1
+We frist used the raw (unnormalized) version of 3 datasets (Aviti_raw_data.txt, Miseq_raw_data.txt, Novaseq_raw_data.txt). Second, we used the percentage-based version of the datasets (Aviti_perc_data.txt, Miseq_perc_data.txt, Novaseq_perc_data.txt). However, the final version of the datasets were:
+- Aviti_DESeq2_normalized_data.txt
+- Miseq_DESeq2_normalized_data.txt
+- Novaseq_DESeq2_normalized_data.txt
+These datasets contain 36 samples each. They are not supposed to be mixed together. each time one dataset is considered, splitted into train and test, then the rest of analysis is done.
+
+- **Train Dataset:** we have 3 datasets. 27 samples (3/4) of each was used as train set. 
+- **Test Datasets:**  we have 3 datasets. 9 samples (1/4) of each was used as train set. 
+  
+
+## Implementation
+- **Notebook:** `Soil_Classification-shapg(supercomputer).ipynb`
+- This notebook contains the implementations
+
+## Environment
+**Python version:** 3.11.5
+**and Core libraries include:**
+- NumPy  
+- Pandas  
+- Scikit‑learn  
+- SHAP & shapG
+- Matplotlib  
+- Seaborn
+
+## Citation
+If you use this repository, please cite:
+**"Microbiome-Based Classification of Soil Conditions using Machine Learning and Explainable AI"**
+(BibTeX entry will be added once available.)
