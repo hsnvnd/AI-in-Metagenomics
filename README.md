@@ -7,7 +7,7 @@ We frist used the raw (unnormalized) version of 3 datasets (Aviti_raw_data.txt, 
 - Aviti_DESeq2_normalized_data.txt
 - Miseq_DESeq2_normalized_data.txt
 - Novaseq_DESeq2_normalized_data.txt
-These datasets contain 36 samples each. They are not supposed to be mixed together. each time one dataset is considered, splitted into train and test, then the rest of analysis is done.
+These datasets contain 36 samples each and are analyzed independently rather than being mixed. Each time one dataset is considered, split into train and test, and the rest of analysis is done.
 
 - **Train Dataset:** we have 3 datasets. 27 samples (3/4) of each was used as train set. 
 - **Test Datasets:**  we have 3 datasets. 9 samples (1/4) of each was used as train set. 
