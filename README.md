@@ -28,4 +28,4 @@ These datasets contain 36 samples each and are analyzed independently rather tha
 ## Citation
 If you use this repository, please cite:
 **"Microbiome-Based Classification of Soil Conditions using Machine Learning and Explainable AI"**
-(BibTeX entry will be added once available.)
+(BibTeX entry will be added once available).
