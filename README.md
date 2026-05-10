@@ -3,8 +3,6 @@ This repository contains the source code for the paper **"Microbiome-Based Class
 
 
 ## Dataset Overview
-
-## Phase 1
 We frist used the raw (unnormalized) version of 3 datasets (Aviti_raw_data.txt, Miseq_raw_data.txt, Novaseq_raw_data.txt). Second, we used the percentage-based version of the datasets (Aviti_perc_data.txt, Miseq_perc_data.txt, Novaseq_perc_data.txt). However, the final version of the datasets were:
 - Aviti_DESeq2_normalized_data.txt
 - Miseq_DESeq2_normalized_data.txt
