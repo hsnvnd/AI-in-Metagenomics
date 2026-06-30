@@ -20,7 +20,7 @@ These datasets contain 36 samples each and are analyzed independently rather tha
 **and Core libraries include:**
 - NumPy  
 - Pandas  
-- Scikit‑learn  
+- Scikit‑learn (Version: 1.5.2)  
 - SHAP & shapG
 - Matplotlib  
 - Seaborn
