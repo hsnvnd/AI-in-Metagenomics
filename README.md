@@ -1,5 +1,5 @@
 ## Overview
-This repository contains the source code for the paper **"Microbiome-Based Classification of Soil Conditions Using Machine Learning and Explainable AI"**. This project implements a Machine Learning pipeline using Linear SVM and Random Forest to classify high-dimensional microbiome data. It leverages Explainable AI (XAI) through SHAP and ShapG to find significant features and quantify microbial indicator contributions across multiple sequencing platforms.
+This repository contains the source code for the paper **"Microbiome-Based Classification of Soil Conditions Using Machine Learning and Explainable AI"**. This project implements a Machine Learning pipeline using Linear SVM and Random Forest to classify high-dimensional microbiome data. It leverages Explainable AI (XAI) through SHAP and ShapG to quantify feature contributions and identify the most influential genera across multiple sequencing platforms.
 
 ## Dataset Overview
 We frist used the raw (unnormalized) version of 3 datasets (Aviti_raw_data.txt, Miseq_raw_data.txt, Novaseq_raw_data.txt). Second, we used the percentage-based version of the datasets (Aviti_perc_data.txt, Miseq_perc_data.txt, Novaseq_perc_data.txt). However, the final version of the datasets were:
