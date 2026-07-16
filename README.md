@@ -25,6 +25,10 @@ These datasets contain 36 samples each and are analyzed independently rather tha
 - Matplotlib  
 - Seaborn
 
+## Contact info
+- For questions regarding data preprocessing or R/DESeq2 workflows, contact Samuele.
+- For questions regarding Python code, machine learning models, or SHAP/ShapG analysis, contact Fatemeh.
+
 ## Citation
 If you use this repository, please cite:
 **"Microbiome-Based Classification of Soil Conditions using Machine Learning and Explainable AI"**
