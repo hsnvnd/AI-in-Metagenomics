@@ -14,7 +14,7 @@ These datasets contain 36 samples each and are analyzed independently rather tha
 
 ## Implementation
 - **Notebook:** `Soil_Classification-shapg(supercomputer).ipynb`
-
+- Refer to the .pptx file for a detailed overview 
 ## Environment
 **Python version:** 3.11.5
 **and Core libraries include:**
