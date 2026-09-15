@@ -1,0 +1,798 @@
+%Version 3.1 December 2024
+% See section 11 of the User Manual for version history
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                 %%
+%% Please do not use \input{...} to include other tex files.       %%
+%% Submit your LaTeX manuscript as one .tex document.              %%
+%%                                                                 %%
+%% All additional figures and files should be attached             %%
+%% separately and not embedded in the \TeX\ document itself.       %%
+%%                                                                 %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%\documentclass[referee,sn-basic]{sn-jnl}% referee option is meant for double line spacing
+
+%%=======================================================%%
+%% to print line numbers in the margin use lineno option %%
+%%=======================================================%%
+
+%%\documentclass[lineno,pdflatex,sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
+
+%%=========================================================================================%%
+%% the documentclass is set to pdflatex as default. You can delete it if not appropriate.  %%
+%%=========================================================================================%%
+
+%%\documentclass[sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
+
+%%Note: the following reference styles support Namedate and Numbered referencing. By default the style follows the most common style. To switch between the options you can add or remove Numbered in the optional parenthesis. 
+%%The option is available for: sn-basic.bst, sn-chicago.bst%  
+ 
+%%\documentclass[pdflatex,sn-nature]{sn-jnl}% Style for submissions to Nature Portfolio journals
+%%\documentclass[pdflatex,sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}% Math and Physical Sciences Numbered Reference Style
+%%\documentclass[pdflatex,sn-mathphys-ay]{sn-jnl}% Math and Physical Sciences Author Year Reference Style
+%%\documentclass[pdflatex,sn-aps]{sn-jnl}% American Physical Society (APS) Reference Style
+%%\documentclass[pdflatex,sn-vancouver-num]{sn-jnl}% Vancouver Numbered Reference Style
+%%\documentclass[pdflatex,sn-vancouver-ay]{sn-jnl}% Vancouver Author Year Reference Style
+%%\documentclass[pdflatex,sn-apa]{sn-jnl}% APA Reference Style
+%%\documentclass[pdflatex,sn-chicago]{sn-jnl}% Chicago-based Humanities Reference Style
+
+%%%% Standard Packages
+%%<additional latex packages if required can be included here>
+\usepackage{setspace}
+\doublespacing
+\usepackage{lineno}
+\linenumbers
+\usepackage{graphicx}%
+\usepackage{multirow}%
+\usepackage{soul}
+\usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{amsthm}%
+\usepackage{mathrsfs}%
+\usepackage[title]{appendix}%
+\usepackage{xcolor}%
+\usepackage{textcomp}%
+\usepackage{manyfoot}%
+\usepackage{booktabs}%
+\usepackage{algorithm}%
+\usepackage{algorithmicx}%
+\usepackage{algpseudocode}%
+\usepackage{listings}%
+\usepackage{url}
+\usepackage{hyperref}
+
+\usepackage{xurl}
+\usepackage{longtable}
+\usepackage{booktabs}   % Required for \toprule, \midrule, and \bottomrule
+\usepackage{ltablex}    % Helps xltabular handle page breaks better in some templates
+%%%%
+\usepackage{placeins}
+\usepackage{seqsplit}
+
+
+%%%%%=============================================================================%%%%
+%%%%  Remarks: This template is provided to aid authors with the preparation
+%%%%  of original research articles intended for submission to journals published 
+%%%%  by Springer Nature. The guidance has been prepared in partnership with 
+%%%%  production teams to conform to Springer Nature technical requirements. 
+%%%%  Editorial and presentation requirements differ among journal portfolios and 
+%%%%  research disciplines. You may find sections in this template are irrelevant 
+%%%%  to your work and are empowered to omit any such section if allowed by the 
+%%%%  journal you intend to submit to. The submission guidelines and policies 
+%%%%  of the journal take precedence. A detailed User Manual is available in the 
+%%%%  template package for technical guidance.
+%%%%%=============================================================================%%%%
+
+%% as per the requirement new theorem styles can be included as shown below
+\theoremstyle{thmstyleone}%
+\newtheorem{theorem}{Theorem}%  meant for continuous numbers
+%%\newtheorem{theorem}{Theorem}[section]% meant for sectionwise numbers
+%% optional argument [theorem] produces theorem numbering sequence instead of independent numbers for Proposition
+\newtheorem{proposition}[theorem]{Proposition}% 
+%%\newtheorem{proposition}{Proposition}% to get separate numbers for theorem and proposition etc.
+
+\theoremstyle{thmstyletwo}%
+\newtheorem{example}{Example}%
+\newtheorem{remark}{Remark}%
+
+\theoremstyle{thmstylethree}%
+\newtheorem{definition}{Definition}%
+
+\raggedbottom
+%%\unnumbered% uncomment this for unnumbered level heads
+
+\begin{document}
+
+\title[Article Title]{Microbiome-Based Classification of Soil Conditions Using Machine Learning and Explainable AI}
+
+%%=============================================================%%
+%% GivenName	-> \fnm{Joergen W.}
+%% Particle	-> \spfx{van der} -> surname prefix
+%% FamilyName	-> \sur{Ploeg}
+%% Suffix	-> \sfx{IV}
+%% \author*[1,2]{\fnm{Joergen W.} \spfx{van der} \sur{Ploeg} 
+%%  \sfx{IV}}\email{iauthor@gmail.com}
+%%=============================================================%%
+
+\author*[1]{\fnm{Fatemeh} \sur{Hassanvand}}\email{fatemeh.hassanvand@uniud.it}
+
+\author[2]{\fnm{Samuele} \sur{Boga}}\email{boga.samuele@spes.uniud.it}
+
+\author[1]{\fnm{Ali} \sur{Abdari}}\email{abdari.ali@spes.uniud.it}
+
+\author[3]{\fnm{Slobodanka} \sur{Radovic}}\email{sradovic@igatechnology.com}
+
+\author[1]{\fnm{Giuseppe} \sur{Serra}}\email{giuseppe.serra@uniud.it}
+
+\author*[2]{\fnm{Fabio} \sur{Marroni}}\email{fabio.marroni@uniud.it}
+
+\affil*[1]{\orgdiv{Department of Mathematics, Computer Science and Physics}, \orgname{University of Udine}, \orgaddress{\street{Via delle Scienze, 206}, \postcode{33100}, \state{Udine}, \country{Italy}}}
+
+\affil[2]{\orgdiv{Department of Agricultural, Food, Environmental and Animal Sciences}, \orgname{University of Udine}, \orgaddress{\street{Via delle Scienze, 206}, \postcode{33100}, \state{Udine}, \country{Italy}}}
+
+\affil[3]{\orgdiv{IGA Technology Services}, \orgname{s.r.l}, \orgaddress{\street{Via Linussio, 51}, \postcode{33100}, \state{Udine}, \country{Italy}}}
+
+%%==================================%%
+%% Sample for unstructured abstract %%
+%%==================================%%
+
+\abstract{Different soil types, and soils undergoing different treatments may show different microbial communities. However, identifying the bacterial genera that best discriminate among soil types and treatments remains challenging due to the complexity and high dimensionality of microbiome data. Here, we used three different sequencing platforms (Illumina MiSeq, Element Biosciences AVITI, and Illumina NovaSeq) to characterize the microbiome of rhizosphere samples from grapevines grown under controlled combinations of soil type, soil autoclaving, and root thermal treatment. Genus‑level microbial profiles were used to train Linear Support Vector Machine and Random Forest classifiers, and model interpretability was assessed using SHAP and ShapG to quantify feature contributions and identify the most influential genera. Soil type was classified with high accuracy across all sequencing technologies and models, whereas autoclave treatment showed moderate discriminability and root thermal treatment had limited predictive signal. SHAP‑based analyses consistently identified key microbial indicators, revealing both shared and platform‑specific patterns. Overall, this study demonstrates the effectiveness of combining machine learning with explainable AI to identify microbial signatures and to assess the robustness of microbiome‑based classification across sequencing platforms.}
+
+%%================================%%
+%% Sample for structured abstract %%
+%%================================%%
+
+% \abstract{\textbf{Purpose:} The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.
+% 
+% \textbf{Methods:} The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.
+% 
+% \textbf{Results:} The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.
+% 
+% \textbf{Conclusion:} The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.}
+
+\keywords{Sequencing Platforms, Microbiome, Machine Learning, Explainable AI}
+
+%%\pacs[JEL Classification]{D8, H51}
+
+%%\pacs[MSC Classification]{35A01, 65L10, 65L12, 65L20, 65L70}
+
+\maketitle
+
+\section{Introduction}
+In grapevine cultivation, considerable attention is dedicated to the concept of \textit{terroir}, \textit{i.e.} the biotic and abiotic characteristics that contribute to the uniqueness of local wines. Microbial communities associated with the rhizosphere of grapevines are considered as an important component of the \textit{terroir} concept \cite{white2020}, and are commonly characterized via 16S metabarcoding \cite{Zarraonaindia_2015,guazzini_variations_2026}. Several sequencing platforms can be used for this task. Illumina MiSeq has been widely used for several years, but is being replaced by Illumina NovaSeq, which provides higher throughput \cite{Han2024} and higher quality results \cite{singer_comprehensive_2019}. Element AVITI is a relatively new short-read sequencing platform \cite{arslan_aviti_sequencing_2024} that is  gaining popularity for metabarcoding applications. However, whether microbiome-based predictive models yield consistent results across sequencing platforms remains largely unexplored, particularly for newly introduced technologies such as AVITI.
+
+In grapevine, assessment of microbial diversity between soils can facilitate the identification and classification of different \textit{terroirs} \cite{gobbi_global_2022}. Consequently, rhizosphere microbiome profiles may serve as biological signatures of soil type and environmental conditions. Predicting sample condition based on microbiome composition is an active field of research and has been performed in humans using machine learning approaches, including an evaluation of the best suited ML method for the task \cite{Li31122025}. By contrast, prediction of sample condition based on microbial signatures is still in its infancy for soil microbiome studies. 
+
+Previous work has shown that microbiome composition characterized by sequencing the 16S V3-V4 region on Illumina NovaSeq can be used to discriminate among soil types and, to a lesser extent, among conditions \cite{guazzini_variations_2026}. However, it remains unknown whether these results are robust across sequencing platforms and whether explainable machine-learning approaches can consistently identify the microbial taxa driving classification. 
+While machine-learning approaches provided insights regarding classification ability, their interpretation remains challenging because the contribution of individual taxa to model predictions is unclear. 
+
+Explainable artificial intelligence approaches such as SHAP \cite{SHAP} provide a framework for quantifying feature contributions at both local and global levels, while ShapG \cite{shapG} extends this framework to graph-based representations of data. Grounded in game theory, these methods quantify the contribution of individual features to model predictions and facilitate biological interpretation of machine-learning results. 
+
+Here, we re-analyzed the original Illumina NovaSeq data from our study and re-sequenced the same samples using the Element AVITI and Illumina MiSeq platforms. Soil classification was performed using two machine-learning algorithms, Linear Support Vector Machine (LSVM) \cite{SVM} and Random Forest (RF) \cite{RandomForest}, while model interpretation was conducted using SHAP \cite{SHAP} and ShapG \cite{shapG}. Previous studies have demonstrated the utility of SHAP-based approaches for identifying microbial signatures associated with environmental conditions \cite{Hagen2024}. We therefore investigated the robustness of microbiome-based soil classification across three sequencing platforms, compared the classification performance of LSVM and RF, and the ability of SHAP-based methods to identify microbial taxa associated with soil type and different treatments.
+
+
+% ************************************************
+\section{Materials and Methods}
+\subsection{Data acquisition and study design}
+The experimental setup has been described earlier in detail, and we refer the reader to our previous work for experimental details \cite{guazzini_variations_2026}. Briefly, cuttings of \textit{Vitis vinifera} “Trebbiano Romagnolo“ were planted in 2-litre pots of three commercially available growing substrates, referred to as “sand”, “peat”, and “manure”. Half of the soil was autoclaved at $121\,^{\circ}\text{C}$ for 60 minutes the day before planting. Half of the cuttings underwent root thermal treatment. The overall experimental design included 12 combinations: soil type (3 levels: sand, peat, manure), root thermal treatment (2 levels: presence or absence), and soil autoclave treatment (2 levels: presence or absence). All samples were in triplicate, with the following exceptions: for the condition “sand autoclaved, root not treated” only one plant was available, and for the conditions “manure not autoclaved, root not treated” and “peat not autoclaved, root not treated,” four samples were available. For each sequencing platform, the dataset consisted of 36 samples, of which 27 were used for training and 9 for testing.
+
+Approximately after one year of dwelling, grapevine roots were gently shaken and the soil detached as a consequence of shaking was collected and stored at $-80\,^{\circ}\text{C}$ before DNA extraction. DNA extraction was performed using the DNeasy PowerLyzer PowerSoil kit from QIAGEN (Hilden, Germany), according to manufacturer's instructions.
+
+
+\subsection{Library preparation and sequencing}
+Library preparation for 16S rRNA gene metabarcoding was performed following the Illumina 16S Metagenomic Sequencing Library Preparation protocol (Illumina, Sand Diego, CA). Briefly, approximately 20 ng of total genomic DNA was used as template for PCR amplification of the hypervariable V3-V4 regions of the bacterial 16S rRNA gene using locus-specific primers appended with Illumina overhang adapter sequences: 341F 5-\seqsplit{TCGTCGGCAGCGTCAGATGTGTATAAGAGACAGCCTACGGGNGGCWGCAG}-3 and 805R 5-\seqsplit{GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGGACTACHVGGGTATCTAATCC}-3. Amplicons were purified using magnetic beads to remove primers and small fragments. A second PCR was then carried out to add dual indices and Illumina sequencing adapters, enabling sample multiplexing. Indexed libraries were purified, quantified, normalized, and pooled at equimolar concentrations and the final library pool was directly loaded on MiSeq and NovaSeq 6000 (Illumina, San Diego, CA) platforms for sequencing in 300 bp and 250 bp paired-end (PE) mode, respectively. The library pool was also sequenced on the AVITI platform (Element Biosciences, San Diego, CA) in 300 bp PE mode upon using the Adept library compatibility workflow with Cloudbreak sequencing chemistry (Element Biosciences, San Diego, CA). Library preparation and sequencing were performed by IGA Technology Services s.r.l. (Udine, Italy).
+
+
+
+
+\subsection{Metabarcoding analysis}
+For each technology, 16S rRNA sequencing data were analysed using the \textit{dada2} R package (v. 1.30.0) \cite{callahan2016dada2} to infer amplicon sequence variants (ASVs), which offer greater accuracy, reproducibility, and resolution than traditional operational taxonomic units \cite{10.1038/ismej.2017.119}. Pre-processing was carried out with the \textit{filterAndTrim} function, which trimmed locus-specific PCR primers and truncated reads to 250 bp (forward) and 230 bp (reverse) to remove low-quality bases at the 3’ ends. Reads containing ambiguous nucleotides (Ns) were also discarded. Denoising of the quality-filtered sequences and subsequent merging were performed using \textit{learnErrors}, \textit{dada} and \textit{mergePairs} functions with default parameters. After chimera removal with the \textit{removeBimeraDenovo} function, the resulting ASVs were taxonomically classified against the SILVA database (v. 138.2) \cite{10.1093/nar/gks1219,silva_genus_dada2} using the \textit{assignTaxonomy} built-in implementation of the Naive Bayesian Classifier algorithm described by Wang et al.  \cite{doi:10.1128/AEM.00062-07}. %Genus-level SILVA reference sequences formatted for DADA2 were obtained from Zenodo\footnote{\url{https://zenodo.org/records/14169026/files/silva_nr99_v138.2_toGenus_trainset.fa.gz}}.
+
+Two normalization methods were applied: Total Sum Scaling (TSS) to compute relative abundances and the median-of-ratios method implemented in the \textit{DESeq2} R package (v. 1.42.1) \cite{PMID:25516281}.
+
+Alpha and beta diversity analyses were performed on genus-level taxa, including only those with an average relative abundance greater than or equal to 0.1\% across all samples. Alpha diversity was investigated using the \textit{phyloseq} R package (v. 1.46.0) \cite{mcmurdie2013phyloseq} on DESeq2-normalized count data. Several metrics were computed, namely the observed number of genera, Simpson, and Shannon indices, capturing aspects of richness, dominance, and information content, respectively. To evaluate differences in microbial community structure among sequencing technologies, a principal component analysis (PCA) was generated from square-root-transformed relative abundances (Hellinger transformation) using the \textit{prcomp} function included in the base R \textit{stats} package (v. 4.3.2). All plots were generated using R software (v. 4.3.2) \cite{R} and the \textit{ggplot2} R package (v. 3.5.2) \cite{ggplot2}. 
+
+Friedman tests were employed to investigate differences in the number of reads and in alpha metrics among sequencing technologies. As a post hoc analysis, two-sided Wilcoxon signed-rank tests were used for pairwise comparisons, adjusting the resulting p-values with the Benjamini-Hochberg correction procedure to control the false discovery rate. These statistical analyses were carried out using the base R \textit{stats} package (v. 4.3.2). Permutational multivariate analysis of variance (PERMANOVA) tests were performed using the \textit{adonis2} function (Euclidean distance, 999 permutations) implemented in the \textit{vegan} R package (v. 2.6.8) \cite{vegan} to test for significant differences in beta diversity among sequencing technologies and experimental conditions, namely soil type, soil autoclaving, and root thermal treatment. Multivariate dispersion was investigated using permutational multivariate analysis of dispersion (PERMDISP) tests by means of \textit{betadisper} and \textit{permutest} functions (Euclidean distance, 999 permutations) included in the \textit{vegan} R package. When comparing sequencing platforms, permutations were restricted within sample identity to account for the repeated-measures design, as the same 36 samples were sequenced on MiSeq, AVITI, and NovaSeq platforms. On the other hand, PERMANOVA and PERMDISP analyses on experimental conditions were performed separately within each sequencing technology using unconstrained permutations. Pairwise comparison p-values were corrected as described above for the alpha diversity. The level of statistical significance was set at 0.05 (5\%).
+
+\subsection{Soil classification and feature selection}
+\label{soil_and_feature}
+To restrict the analysis to informative predictors, we performed feature selection by removing variables that did not contribute to the classification tasks. For each outcome (soil type, soil autoclaving, and root thermal treatment), feature importance was estimated using a Random Forest (RF) classifier.
+
+Within the RF framework, feature importance was quantified using the Mean Decrease in Impurity (MDI) criterion \cite{louppe2013understanding}. Briefly, during tree construction, each split is chosen to maximize the reduction in node impurity. The contribution of a given feature is computed as the total decrease in impurity attributable to that feature, averaged across all trees in the ensemble. Features that were not selected in any split across the forest have an MDI score of zero, indicating no contribution to reducing class heterogeneity. Such features were considered non-informative and were excluded from subsequent analyses.
+
+After refining the feature set, the final classification based on soil type, soil autoclaving and root thermal treatment was performed using a RF \cite{RandomForest, pedregosa2011scikit} and a LSVM approach \cite{SVM}. LSVM constructs a single optimal hyperplane that maximizes the margin between classes, offering a deterministic and interpretable framework. This linear approach was selected for its reproducibility and clarity, following the foundational work of Cortes and Vapnik \cite{SVM}. In contrast, RF algorithm builds an ensemble of decision trees, each trained on randomly sampled subsets of data and features. This stochastic approach enables the model to capture complex, non-linear patterns and provides built-in estimates of feature importance, as introduced by Breiman \cite{RandomForest}. The combination of LSVM and RF allows exploring both linear and non-linear modeling strategies, balancing transparency with flexibility.
+
+SHAP \cite{SHAP} and ShapG \cite{shapG} were applied during the training phase to identify the most influential features contributing to the predictions of both the RF and LSVM models. To classify soil type, soil autoclaving, and root thermal treatment, we first applied ML approaches using all the features, and we then explored the impact of  dimensionality reduction by evaluating selected subsets of features providing higher discrimination ability. For soil autoclaving and root thermal treatment, which are binary classification tasks, we considered the top 20 and 3 features from both the SHAP and ShapG importance rankings. In each case, the top-ranked features were selected directly from the overall importance list. For soil type, which involves multi-class classification, we considered a reduced feature set comprising the union of the top 20 ranked features across all three class labels, and a 3-feature subset. For the 3-feature subset, we applied a consensus-based ranking strategy inspired by social choice theory \cite{atzori2010internet, Nassiri_Mofakham, esmaeili}. Starting from the top 20 features per class, each class-specific feature list was treated as a voter ranking features by relevance. The Borda count method was used to aggregate these rankings, assigning points based on each feature’s position in the individual lists. Features consistently ranked near the top accumulated higher scores. This process produced a final consensus ranking, from which the top 3 features were selected and used to retrain the models.
+
+Each classification algorithm relies on one or more hyperparameters, which may affect model performance. All experiments were conducted with fixed random seeds to ensure reproducibility. To optimize model performance and improve the accuracy of each target variable, a grid search strategy with 5-fold cross-validation was applied to the training set \cite{feurer2019hyperparameter}. This approach involved defining a grid of candidate hyperparameter values and systematically training models across all combinations. The best configuration was selected based on average cross-validation accuracy. The final model was then retrained on the full training set using the optimal parameters and evaluated on a held-out test set to ensure an unbiased assessment of generalization performance.
+
+Table~\ref{tab:hyperparameter-range} provides a detailed overview of the hyperparameter search space. The optimal configurations identified for the models in each setup are represented in supplementary tables (Tables S1–S3) available in Additional file 1. 
+% Section~\ref{supplementary} (Tables~\ref{best-autoclave}-\ref{best-soil}
+% ).
+SHAP, ShapG, RF, and SVM were implemented using Python (v. 3.11.5) within a Jupyter Notebook environment, leveraging the scikit-learn (sklearn v. 1.5.2) library \cite{pedregosa2011scikit}. 
+
+\vspace{12pt}
+\noindent\textbf{[Insert Table 1 about here]}
+\vspace{12pt}
+
+% ***********************
+\begin{table}[!h]
+\caption{Summary of hyperparameters, their functional meaning, and explored ranges}
+\label{tab:hyperparameter-range}
+% tabular* spreads the table to the exact width of the text
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}llp{5cm}l}
+\toprule
+\textbf{Models} & \textbf{Parameter name} & \textbf{Meaning} & \textbf{Range} \\
+\midrule
+LSVM & C & The inverse of the regularization strength & $[0.01, 0.1, 1, 10, 30]$ \\
+\midrule
+RF & n\_estimators & Number of trees in the forest & $[10, 50, 100, 200]$ \\
+\cmidrule{2-4}
+& max\_depth & Maximum depth of each tree & $[None, 10, 20, 30]$ \\
+\cmidrule{2-4}
+& min\_samples\_split & Minimum number of samples required to split an internal node & $[2, 5, 10]$ \\
+\cmidrule{2-4}
+& min\_samples\_leaf & Minimum number of samples required to be at a leaf node & $[1, 2, 4]$ \\
+\cmidrule{2-4}
+& max\_features & Number of features considered when looking for the best split & $[sqrt, log_{2}]$ \\
+\botrule
+\end{tabular*}
+\end{table}
+
+
+\section{Results}\label{sec2}
+A simple workflow of the analysis steps taken in this work is shown in Figure~\ref{fig:Workflow}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{WorkFlow.png}
+    \caption{Schematic workflow of the analyses performed in the present study}
+    \label{fig:Workflow}
+\end{figure}
+
+\subsection{Metabarcoding analysis}
+The number of reads per sample varied greatly across different sequencing technologies, as summarized in Table~\ref{tab:reads} and depicted in Figure~\ref{fig:All alpha diversity}A. NovaSeq generated the highest number of reads per sample, followed by AVITI and MiSeq. 
+
+In terms of alpha diversity, several metrics were computed at the genus level, namely the number of observed taxa, Shannon, and Simpson indices (Figure ~\ref{fig:All alpha diversity}B-D). All pairwise comparisons between sequencing technologies were statistically significant, even though AVITI and NovaSeq exhibited largely overlapping distributions in Shannon and Simpson indices. Overall, NovaSeq tended to display higher diversity estimates, followed by AVITI and MiSeq.
+
+Beta diversity was visualized using a PCA based on square-root-transformed relative abundances (Figure ~\ref{fig:Beta diversity}). PERMANOVA analysis indicated significant differences among sequencing technologies ($p = 0.001$), a result consistently observed across all pairwise comparisons. However, the sequencing platform explained only 3.4\% of the total variability. To investigate this effect, PERMDISP tests were performed, yielding significant results for all pairwise comparisons. These findings suggest that the observed differences in microbial community composition may be partly driven by dispersion effects.
+
+All sequencing platforms captured the same biological signals. Soil type consistently emerged as the main driver of microbial community structure, accounting for 43.6\%, 50.8\%, and 53.7\% of the total variation in MiSeq, AVITI, and NovaSeq data, respectively. Soil autoclaving was also detected as statistically significant across all technologies, although it explained a smaller portion of variation ranging from 4.2\% (NovaSeq) to 4.3\% (MiSeq and AVITI). The interaction term between soil type and soil autoclaving accounted for approximately 8\% of the total variation across all platforms, exceeding the contribution of autoclaving alone and suggesting that the effect of autoclaving is modulated by soil type. In contrast, root thermal treatment did not significantly affect community composition, either as a main effect or through interactions with other conditions ($p > 0.05$).
+
+Overall, the sequencing platform generated a statistically detectable but weaker signal compared to experimental conditions. Indeed, while Figure ~\ref{fig:Beta diversity} depicts differences across sequencing technologies, sample ordination is mainly organized into three distinct clouds corresponding to the three soil types.
+
+
+
+
+
+\begin{table}[htbp]
+\caption{The number of reads per sample}\label{tab:reads}%
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lccccc}
+\toprule
+ & Maximum & Minimum & Max.--Min. & Mean & Median \\
+\midrule
+MiSeq & 77.035 & 29.132 & 47.903 & 52.945 & 52.668 \\ 
+AVITI & 299.691 & 69.005 & 230.686 & 161.901 & 151.533 \\ 
+NovaSeq & 1.162.043 & 117.169 & 1.044.874 & 683.269 & 674.796 \\ 
+\botrule
+\end{tabular*}
+\end{table}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{Alpha and Beta diversity/All_plots.png}
+    \caption{Distribution of A) number of sequenced reads, B) Number of identified genera, C) Shannon index, and D) Simpson index.}
+    \label{fig:All alpha diversity}
+\end{figure}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Alpha and Beta diversity/PCA.png}
+    \caption{PCA comparing samples across different sequencing technologies.}
+    \label{fig:Beta diversity}
+\end{figure}
+
+
+\subsection{Soil classification and feature selection}
+Table~\ref{tab:feature-counts} reports the number of genera retained by each sequencing approach after exclusion of zero-importance features. These values reflect differences in the sets of genera that are informative for discriminating among growing substrates and experimental conditions (soil autoclaving and root thermal treatment), rather than overall taxonomic richness.
+
+\begin{table}[htbp]
+\caption{Number of genera after exclusion of zero-importance features}\label{tab:feature-counts}%
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lccc}
+\toprule
+ & AVITI & MiSeq & NovaSeq \\
+\midrule
+Soil type & 35 & 52 & 34 \\ 
+Soil autoclaving & 59 & 55 & 56 \\ 
+Root thermal treatment & 69 & 71 & 66 \\ 
+\botrule
+\end{tabular*}
+\end{table}
+
+\subsubsection{Classification based on LSVM and RF}
+
+Results of classification performance using the two different ML approaches (RF and LSVM) and the two feature attribution approaches (SHAP and ShapG) are listed in Table~\ref{tab:model_performance1}-\ref{tab:model_performance3}. In Table~\ref{tab:model_performance1} we show results for classification of soil type. When considering the 20 most informative features, all sequencing approaches, all ML and feature explainability methods attained 1.0 accuracy. When limiting the results to the 3 most informative features, accuracy was lower, ranging from 0.55 to 1.0. Among sequencing technologies, MiSeq was the one with lower performance. RF had lower performance than LSVM, and ShapG had lower performance than SHAP. NovaSeq\_RF and NovaSeq\_LSVM were the two approaches always achieving full accuracy. The full list of selected features is provided in supplementary tables (Tables S4–S7) available in Additional file 1.
+
+% Section~\ref{supplementary} (Tables~\ref{tab:shap_features_rf}-\ref{tab:shapG_features_lsvm}).
+Beeswarm plots for SHAP and ShapG are provided in Additional files 2-7.
+
+Bacterial taxa affecting the probability of assignment to soil type varied across sequencing methods and algorithms, although some genera were identified by several approaches as key contributors. \textit{SWB02} and \textit{Croceibacterium}, for example, affected the probability of being classified as manure, peat or sand according to MiSeq and AVITI irrespective of the ML algorithm and of the feature attribution approach (Additional files 2 and 3). When sequencing with NovaSeq \textit{Subgroup 10}, \textit{Inhella} and \textit{Fimbriglobus} were among the genera most affecting assignment to a soil type according to SHAP, but not ShapG, while \textit{Bauldia} was assigned relatively high importance by both feature attribution approaches. 
+
+Discrimination between autoclaved and untreated soil was more difficult, in spite of being a problem of binary classification, compared to the multi-class classification required for soil type. Accuracy ranged from 0.66 to 1.0 when using the top 20 features, and from 0.22 to 0.88 when using the top 3 features (Table~\ref{tab:model_performance2}). 
+Bacterial taxa increasing the probability of assignment to soil treated by autoclave varied across sequencing methods and algorithms, although some genera, such as \textit{Methylobacillus}, \textit{Mesobacillus}, \textit{Neobacillus}, and \textit{Imperialibacter}, were observed in several combinations (Additional files 4 and 5). 
+
+Finally, the prediction ability of identifying soils hosting heat-treated roots was very low, ranging from 0.22 to 0.77. Some of the most contributing genera, such as \textit{MND1} and \textit{YC-ZSS-LKJ147} were identified both by MiSeq and AVITI using both SHAP and ShapG; \textit{Hassallia} was a top contributor both for MiSeq and NovaSeq, but the majority of top contributing genera were specific to one sequencing approach (Additional files 6 and 7).
+
+
+
+
+
+
+\begin{table}[htbp]
+\caption{Soil type classification summary: underlined entries indicate the highest values obtained from RF and LSVM}\label{tab:model_performance1}%
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcccc}
+\toprule
+\textbf{Applied method} & \multicolumn{2}{c}{\textbf{20 features union}} & \multicolumn{2}{c}{\textbf{3 features}} \\
+\cmidrule{2-3} \cmidrule{4-5}
+& SHAP & ShapG & SHAP & ShapG \\
+\midrule
+AVITI\_RF & \underline{1.0} & \underline{1.0} & \underline{1.0} & 0.88 \\
+MiSeq\_RF & \underline{1.0} & \underline{1.0} & 0.77 & 0.55 \\
+NovaSeq\_RF & \underline{1.0} & \underline{1.0} & \underline{1.0} & \underline{1.0} \\
+\midrule
+AVITI\_LSVM & \underline{1.0} & \underline{1.0} & \underline{1.0} & 0.88 \\
+MiSeq\_LSVM & \underline{1.0} & \underline{1.0} & 0.88 & 0.88 \\
+NovaSeq\_LSVM & \underline{1.0} & \underline{1.0} & \underline{1.0} & \underline{1.0} \\
+\botrule
+\end{tabular*}
+\end{table}
+
+
+\begin{table}[htbp]
+\caption{Soil autoclaving classification summary: underlined entries indicate the highest values obtained from RF and LSVM}\label{tab:model_performance2}%
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcccc}
+\toprule
+\textbf{Applied method} & \multicolumn{2}{c}{\textbf{20 features}} & \multicolumn{2}{c}{\textbf{3 features}} \\
+\cmidrule{2-3} \cmidrule{4-5}
+& SHAP & ShapG & SHAP & ShapG \\
+\midrule
+AVITI\_RF & 0.88 & \underline{0.88} & 0.55 & 0.77 \\
+MiSeq\_RF & \underline{1.0} & 0.77 & 0.77 & 0.44 \\
+NovaSeq\_RF & 0.66 & 0.77 & \underline{0.88} & 0.77 \\
+\midrule
+AVITI\_LSVM & 0.88 & 0.77 & \underline{0.88} & 0.77 \\
+MiSeq\_LSVM & 0.66 & 0.77 & 0.22 & 0.55 \\
+NovaSeq\_LSVM & 0.77 & \underline{0.88} & 0.22 & \underline{0.88} \\
+\botrule
+\end{tabular*}
+\end{table}
+
+
+
+
+\begin{table}[htbp]
+\caption{Root thermal treatment classification summary: underlined entries indicate the highest values obtained from RF and LSVM}\label{tab:model_performance3}%
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcccc}
+\toprule
+\textbf{Applied method} & \multicolumn{2}{c}{\textbf{20 features}} & \multicolumn{2}{c}{\textbf{3 features}} \\
+\cmidrule{2-3} \cmidrule{4-5}
+& SHAP & ShapG & SHAP & ShapG \\
+\midrule
+AVITI\_RF & 0.33 & 0.44 & 0.44 & 0.66 \\
+MiSeq\_RF & 0.44 & 0.44 & 0.44 & 0.44 \\
+NovaSeq\_RF & \underline{0.77} & \underline{0.66} & 0.55 & \underline{0.77} \\
+\midrule
+AVITI\_LSVM & 0.22 & 0.55 & 0.66 & 0.44 \\
+MiSeq\_LSVM & 0.55 & 0.44 & 0.66 & 0.33 \\
+NovaSeq\_LSVM & 0.66 & 0.55 & \underline{0.77} & 0.55 \\
+\botrule
+\end{tabular*}
+\end{table}
+
+
+
+\section{Discussion}
+We first compared the three sequencing technologies based on alpha and beta diversity metrics. NovaSeq tended to exhibit higher alpha diversity indices followed by AVITI and MiSeq. This pattern could be explained by different throughputs, even though Shannon and Simpson indices are known to be more robust to sequencing depth compared to the number of genera \cite{alpha_div10.1093/femsec/fiae019}. When evaluating beta diversity, the choice of the sequencing technology explained only 3.4\% of the variation in the microbial community. This finding supports the consistency of all technologies in detecting the dominant effect of soil type and the weaker, but still significant effect of soil autoclaving, while the root thermal treatment failed to reach statistical significance.
+
+Next, we investigated the ability of the three sequencing technologies, two machine learning algorithms and two post hoc interpretability approaches to discriminate soil types and experimental conditions based on the microbial composition. Our results show that soil type, despite being a multi-class classification problem, can be accurately resolved by all sequencing platforms and machine learning methods considered. This finding aligns both with the PCA ordination pattern and with our previous work, which identified soil type as a strong determinant of bacterial community composition \cite{guazzini_variations_2026}.
+For soil samples, models trained with the full set of 20 features achieved uniformly high accuracy, with all combinations reaching perfect performance (Table~\ref{tab:model_performance1}). Reducing the feature set to 3 variables resulted in a decrease in accuracy. Under this constraint, NovaSeq and AVITI sequencing achieved perfect accuracy when using SHAP-selected features, while NovaSeq also achieved perfect accuracy with features selected by ShapG. In contrast, MiSeq generally showed lower performance. No substantial effect of the machine learning algorithm was observed for soil type classification, whereas SHAP appeared to slightly outperform ShapG as a feature attribution method.
+
+Classification based on autoclave treatment yielded lower accuracy than soil type classification, as expected. Previous analyses have shown that microbial community shifts induced by autoclaving are moderate rather than drastic \cite{guazzini_variations_2026}. Accuracy ranged from 0.66 to 1.0 when considering the top 20 features and from 0.22 to 0.88 when considering the top 3 features (Table~\ref{tab:model_performance2}). Some of the genera positively associated with autoclave treatment, such as \textit{Neobacillus}, are known to be resistant to heat shocks \cite{Hameed_24}. The highest accuracy was obtained using  MiSeq data, in combination with a Random Forest classifier and SHAP-based feature attribution. This result is somewhat unexpected, given that MiSeq has previously been reported to perform worse than NovaSeq in metabarcoding analyses \cite{Han2024}. 
+
+Heat-treated root samples exhibited the lowest classification performance, with accuracy ranging from 0.22 to 0.77 using 20 features and from 0.33 to 0.77 using 3 features (Table~\ref{tab:model_performance3}). This suggests that heat treatment of roots induces weak or inconsistent shifts in microbial composition, limiting the discriminative power of both sequencing platforms and machine learning approaches.
+
+Taken together, these findings indicate that a feature set of only 3 variables is generally insufficient to capture the underlying structure of the data, regardless of sequencing platform or sample type. While models trained on 20 features typically show greater stability and improved performance, their effectiveness remains strongly dependent on the biological signal present in the data. In cases such as heat-treated roots, increasing the number of features cannot compensate for the lack of microbial differentiation (Table~\ref{tab:model_performance3}). An additional important observation is the high variability in accuracy across sequencing platforms, despite their broadly comparable technical performance. This variability suggests that isolated high‑accuracy results should be interpreted with caution. For example, in Table~\ref{tab:model_performance2}, the AVITI\_LSVM model with SHAP‑selected 3 features achieves an accuracy of 0.88, yet the corresponding LSVM models for the other two platforms yield accuracies of only 0.22. Such discrepancies are unlikely to reflect true biological differences and instead point to random variation or instability in reduced-feature models. This further supports the conclusion that models relying on very small feature sets lack robustness and should not be used for biological interpretation or decision-making.
+
+Finally, the small sample size available in this study allowed us to evaluate the performance and stability of these approaches in data-limited settings, which are common in microbiome studies due to experimental and economic constraints. The present study is based on a small sample size. For each sequencing platform, a total of 36 samples were available, with 27 used for training and 9 for testing. This limited sample size explains the discrete nature of the accuracy values (multiples of 0.11). Despite this constraint, we consistently observed strong discriminatory power for soil type across all sequencing platforms and machine learning algorithms, moderate discrimination for autoclave treatment, and little to no discriminatory power for root thermal treatment. 
+
+\section{Conclusion}
+We assessed the performance of three sequencing technologies, two machine learning approaches and two feature attribution methods in discriminating soil types and treatment conditions based on microbial composition. Our results show that two sequencing platforms (AVITI and NovaSeq) have similar performance, with MiSeq having usually slightly lower performance. No major difference was observed between the two ML approaches while SHAP showed usually higher perfomance than ShapG. Importantly, most methods showed very good performance in assigning samples to soil type, moderate performance in predicting autoclave treatment, and usually bad performance in predicting root thermal treatment. Overall, our results suggest that even on a small data set as the one used in this work, in presence of strong biological signal, ML and feature attribution approaches are very effective in classifying samples.
+
+\backmatter
+
+% \section*{Supplementary information}
+% \label{supplementary}
+
+% \renewcommand{\thetable}{S\arabic{table}}
+% \begin{table}[!h]
+% \caption{Best hyperparameters chosen for soil autoclaving}\label{best-autoclave}
+% \footnotesize % Keeps it professional and compact
+% \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}llp{8cm}}
+% \toprule
+% \textbf{Model} & \textbf{Features} & \textbf{Hyperparameters (SHAP / ShapG)} \\
+% \midrule
+% AVITI\_RF & 20 Union & max\_depth: none; max\_features: sqrt; min\_samples\_leaf: 1; min\_samples\_split: 2; n\_estimators: 50 \\
+%           & 3 Features & max\_depth: none; max\_features: sqrt; min\_samples\_leaf: 1; min\_samples\_split: 2; n\_estimators: 10 \\
+% \midrule
+% MiSeq\_RF & 20 Union & max\_depth: none; max\_features: sqrt; min\_samples\_leaf: 1; min\_samples\_split: 5; n\_estimators: 50 \\
+%           & 3 Features & max\_depth: none; max\_features: sqrt; min\_samples\_leaf: 1; min\_samples\_split: 2; n\_estimators: 50 \\
+% \midrule
+% NovaSeq\_RF & 20 Union & max\_depth: none; max\_features: sqrt; min\_samples\_leaf: 1; min\_samples\_split: 2; n\_estimators: 50 \\
+%             & 3 Features & max\_depth: none; max\_features: sqrt; min\_samples\_leaf: 1; min\_samples\_split: 2; n\_estimators: 10 \\
+% \midrule
+% AVITI\_LSVM & 20 Union & C: 0.01; kernel: linear \\
+%             & 3 Features & C: 0.01; kernel: linear \\
+% \midrule
+% MiSeq\_LSVM & 20 Union & C: 0.01; kernel: linear \\
+%             & 3 Features & C: 10; kernel: linear \\
+% \midrule
+% NovaSeq\_LSVM & 20 Union & C: 0.01; kernel: linear \\
+%               & 3 Features & C: 0.01; kernel: linear \\
+% \botrule
+% \end{tabular*}
+% \end{table}
+
+% % *******************************
+% \begin{table}[!h]
+% \caption{Best hyperparameters chosen for root thermal treatment}\label{best-heatroot}
+% \footnotesize
+% \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}llp{8cm}}
+% \toprule
+% \textbf{Model} & \textbf{Features} & \textbf{Hyperparameters (SHAP / ShapG)} \\
+% \midrule
+% AVITI\_RF & 20 Union & max\_depth: none; max\_features: sqrt; min\_samples\_leaf: 1; min\_samples\_split: 5; n\_estimators: 200 \\
+%           & 3 Features & max\_depth: none; max\_features: sqrt; min\_samples\_leaf: 1; min\_samples\_split: 2; n\_estimators: 50 \\
+% \midrule
+% MiSeq\_RF & 20 Union & max\_depth: none; max\_features: sqrt; min\_samples\_leaf: 2; min\_samples\_split: 2; n\_estimators: 200 \\
+%           & 3 Features & max\_depth: none; max\_features: sqrt; min\_samples\_leaf: 1; min\_samples\_split: 10; n\_estimators: 100 \\
+% \midrule
+% NovaSeq\_RF & 20 Union & max\_depth: none; max\_features: sqrt; min\_samples\_leaf: 4; min\_samples\_split: 10; n\_estimators: 10 \\
+%             & 3 Features & max\_depth: none; max\_features: sqrt; min\_samples\_leaf: 2; min\_samples\_split: 10; n\_estimators: 50 \\
+% \midrule
+% AVITI\_LSVM & 20 Union & C: 0.01; kernel: linear \\
+%             & 3 Features & C: 30; kernel: linear \\
+% \midrule
+% MiSeq\_LSVM & 20 Union & C: 0.01; kernel: linear \\
+%             & 3 Features & C: 0.01; kernel: linear \\
+% \midrule
+% NovaSeq\_LSVM & 20 Union & C: 0.01; kernel: linear \\
+%               & 3 Features & C: 0.01; kernel: linear \\
+% \botrule
+% \end{tabular*}
+% \end{table}
+% % ***************************
+
+% \begin{table}[!h]
+% \caption{Best hyperparameters chosen for soil type}\label{best-soil}
+% \footnotesize
+% \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}llp{8cm}}
+% \toprule
+% \textbf{Model} & \textbf{Features} & \textbf{Hyperparameters (SHAP / ShapG)} \\
+% \midrule
+% AVITI\_RF & 20 Union & max\_depth: none; max\_features: sqrt; min\_samples\_leaf: 1; min\_samples\_split: 2; n\_estimators: 10 \\
+%           & 3 Features & max\_depth: none; max\_features: sqrt; min\_samples\_leaf: 1; min\_samples\_split: 2; n\_estimators: 10 \\
+% \midrule
+% MiSeq\_RF & 20 Union & max\_depth: none; max\_features: sqrt; min\_samples\_leaf: 1; min\_samples\_split: 2; n\_estimators: 50 \\
+%           & 3 Features & max\_depth: none; max\_features: sqrt; min\_samples\_leaf: 1; min\_samples\_split: 10; n\_estimators: 50 \\
+% \midrule
+% NovaSeq\_RF & 20 Union & max\_depth: none; max\_features: sqrt; min\_samples\_leaf: 1; min\_samples\_split: 2; n\_estimators: 10 \\
+%             & 3 Features & max\_depth: none; max\_features: sqrt; min\_samples\_leaf: 1; min\_samples\_split: 2; n\_estimators: 10 \\
+% \midrule
+% AVITI\_LSVM & 20 Union & C: 0.01; kernel: linear \\
+%             & 3 Features & C: 0.01; kernel: linear \\
+% \midrule
+% MiSeq\_LSVM & 20 Union & C: 0.01; kernel: linear \\
+%             & 3 Features & C: 0.01; kernel: linear \\
+% \midrule
+% NovaSeq\_LSVM & 20 Union & C: 0.01; kernel: linear \\
+%               & 3 Features & C: 0.01; kernel: linear \\
+% \botrule
+% \end{tabular*}
+% \end{table}
+
+% % ****************************
+% % --- TABLE PART 1 (RF Models) ---
+% \begin{table}[t] % Force to the TOP of the page
+% \caption{Top 20 SHAP Features for RF Configurations, with the top three underlined}
+% \label{tab:shap_features_rf}
+% \footnotesize % Slightly smaller to save vertical space
+% \setlength{\tabcolsep}{4pt}
+% \renewcommand{\arraystretch}{1.2} % Narrower rows to stay away from the footer
+% \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lp{3.3cm}p{3.3cm}p{3.3cm}}
+% \toprule
+% \textbf{Model} & \textbf{Autoclave} & \textbf{HeatRoot} & \textbf{Soil} \\ \midrule
+% AVITI\_RF & 
+% \underline{Gemmata}, \underline{Neobacillus}, \underline{Ramlibacter}, Methanosarcina, Niallia, UBA6140, Imperialibacter, OLB13, Methylobacter, Flavobacterium, Stenotrophobacter, Telmatocola, Dysgonomonas, Blastocatella, Methyloversatilis, Pseudofulvimonas, Mesobacillus, Sphingomonas, Sulfurifustis, Reyranella & 
+% \underline{YC-ZSS-LKJ147}, \underline{Salinispira}, \underline{Massilia}, Algoriphagus, Microbacterium, Candidatus Arcanobacter, Reyranella, Candidatus Ovatusbacter, Rhodopila, Candidatus Omnitrophus, Erythrobacter, Mesorhizobium, Lacihabitans, Variovorax, Xylophilus, Pseudoduganella, Bradyrhizobium, Ramlibacter, OLB13, Mycobacterium & 
+% Acidovorax, Agrobacterium, Azotobacter, C1-B045, Candidatus Solibacter, Cellvibrio, Chthonobacter, \underline{Croceibacterium}, Fermentimonas, Fimbriiglobus Hyphomicrobium, Ideonella, Labrys, Methylobacter, Niveispirillum, Oligoflexus, oc32, Parafilimonas, Planctopirus, Planifilum, \underline{Roseimaritima}, Sneathiella, Spirochaeta 2, \underline{SWB02}, Ureibacillus, Zavarzinella \\ \midrule
+
+% MiSeq\_RF & 
+% \underline{Chryseolinea}, \underline{Imperialibacter}, \underline{Abditibacterium}, YC-ZSS-LKJ147, Rhodoplanes, Methylobacillus, Candidatus Nitrosoarchaeum, mle1-7, Bauldia, Hirschia, Devosia, Ellin6055, Ferruginibacter, IS-44, Parageobacillus, Mesobacillus, Ramlibacter, Dinghuibacter, Hassallia, Dokdonella & 
+% \underline{Ilumatobacter}, \underline{Pedobacter}, \underline{MND1}, Oleiharenicola, Phaselicystis, Chitinophaga, Chryseotalea, Pseudolabrys, Agriterribacter, Hydrogenophaga, Opitutus, Hypericibacter, Pedomicrobium, Luteolibacter, YC-ZSS-LKJ147, Subgroup 10, Candidatus Solibacter, Lentzea, Methylotenera, Labrys & 
+% Acidibacter, Arsenicitalea, Bosea, Bradyrhizobium, \underline{CL500-3}, \underline{Croceibacterium}, Dechloromonas, Dokdonella, Ferribacterium, Gemmata, Geomonas, Ilumatobacter, JGI 0001001-H03, Kineobactrum, Luteolibacter, MND1, Methylophilus, OLB12, Oleiharenicola, Opitutus, Planctomicrobium, Pseudomonas, Rubrivivax, Shinella, Sphingopyxis, Sphingorhabdus, Steroidobacter, \underline{SWB02} \\ \midrule
+
+% NovaSeq\_RF & 
+% \underline{Neobacillus}, \underline{Ammoniphilus}, \underline{Stenotrophobacter}, Kribbella, Snodgrassella, Gemmata, BIyi10, Aminobacter, Cupriavidus, Immundisolibacter, [Aquaspirillum] arcticum group, Slackia, Noviherbaspirillum, Novosphingobium, Marinoscillum, Brevibacillus, Verrucosispora, Subgroup 10, Crocinitomix, OLB13 & 
+% \underline{Algoriphagus}, \underline{Kribbella}, \underline{Apilactobacillus}, CL500-3, Acinetobacter, Candidatus Nitrosoarchaeum, Rhodovastum, Longimicrobium, Stenotrophobacter, Candidatus Omnitrophus, Pararhizobium, Niallia, Noviherbaspirillum, Ketobacter, Hassallia, Ferruginibacter, Aquicella, Hydrogenispora, Candidatus Xiphinematobacter, Meiothermus & 
+% Afipia, Bauldia, BIyi10, Brevifollis, Caldicoprobacter, \underline{Candidatus Berkiella}, DSSD61, Dyadobacter, Dyella, Hydrogenispora, IS-44, \underline{Inhella}, Ketobacter, Methanosarcina, Microbacterium, Pararhizobium, \underline{Plot4-2H12}, Pseudarthrobacter, Rhodopila, Ruminofilibacter, Runella, Solimonas, Subgroup 10 \\ \bottomrule
+% \end{tabular*}
+% \end{table}
+
+% % --- TABLE PART 2 (LSVM Models) ---
+% \begin{table}[!h] % Force to the TOP of a NEW page
+% \caption{Top 20 SHAP Features for LSVM Configurations, with the top three underlined}
+% \label{tab:shap_features_lsvm}
+% \footnotesize
+% \setlength{\tabcolsep}{4pt}
+% \renewcommand{\arraystretch}{1.2}
+% \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lp{3.3cm}p{3.3cm}p{3.3cm}}
+% \toprule
+% \textbf{Model} & \textbf{Autoclave} & \textbf{HeatRoot} & \textbf{Soil} \\ \midrule
+% AVITI\_LSVM & 
+% \underline{Flavobacterium}, \underline{Sphingomonas}, \underline{Arenimonas}, Hassallia, Methylobacter, Ramlibacter, Rubrivivax, Gemmata, Stenotrophobacter, Pelotalea, Sediminibacterium, Paucibacter, UBA6140, Iamia, Acidiferrimicrobium, Hirschia, Niastella, Pseudorhodoplanes, Reyranella, Conexibacter & 
+% \underline{Terrimonas}, \underline{Chryseotalea}, \underline{Subgroup 10}, MND1, Arenimonas, Ramlibacter, Bradyrhizobium, Sediminibacterium, Devosia, Gemmatimonas, Cellvibrio, Ohtaekwangia, Luteolibacter, YC-ZSS-LKJ147, Ferribacterium, Algoriphagus, Variovorax, Lentzea, Rhizobacter, Massilia & 
+% Azotobacter, Labrys, Chthonobacter, Ideonella, Sphingorhabdus, Agrobacterium, Acidovorax, YC-ZSS-LKJ147, Parafilimonas, \underline{Gemmata}, Sneathiella, Fimbriiglobus, C1-B045, Methylobacter, BIyi10, \underline{SWB02}, Polycyclovorans, Croceibacterium, Candidatus Solibacter, Hyphomicrobium, Cellvibrio, Spirochaeta 2, \underline{Streptomyces}, \underline{Opitutus} \\ \midrule
+
+% MiSeq\_LSVM & 
+% \underline{IS-44}, \underline{Dokdonella}, \underline{Methylobacillus}, Candidatus Solibacter, Ferruginibacter, Chthoniobacter, Devosia, Hirschia, Bauldia, Ramlibacter, Chryseotalea, Phenylobacterium, Ellin6055, YC-ZSS-LKJ147, Panacibacter, Ellin517, Luteolibacter, Pir4 lineage, Rhodoplanes, mle1-7 & 
+% \underline{UBA6140}, \underline{Pseudomonas}, \underline{Methylotenera}, Oleiharenicola, Opitutus, Croceibacterium, Candidatus Solibacter, Dongia, MND1, Steroidobacter, Ilumatobacter, YC-ZSS-LKJ147, Pirellula, Sphingomonas, Subgroup 10, Reyranella, Hassallia, Phenylobacterium, Chryseotalea, Ellin6067 & 
+% Ilumatobacter, CL500-3, Ohtaekwangia, Arsenicitalea, Dechloromonas, Geomonas, Pirellula, Sphingorhabdus, Paludibaculum, Dokdonella, Ellin6067, Acidibacter, Rubrivivax, Gemmata, Pedomicrobium, OLB12, MND1, Sphingomonas, \underline{Pseudomonas}, \underline{SWB02}, Polycyclovorans, Croceibacterium, JGI 0001001-H03, Kineobactrum, Oleiharenicola, \underline{Steroidobacter}, Methylophilus, Shinella, Opitutus, Luteolibacter \\ \midrule
+
+% NovaSeq\_LSVM & 
+% \underline{Ramlibacter}, \underline{Gemmata}, \underline{BIyi10}, Novosphingobium, TM7a, Methylobacillus, Pseudomonas, Algoriphagus, Marinoscillum, CL500-3, Subgroup 10, Kribbella, Aminobacter, Mesobacillus, Agrobacterium, Cupriavidus, Asticcacaulis, Candidatus Protochlamydia, Niallia, Neobacillus & 
+% \underline{Shinella}, \underline{CL500-3}, \underline{Novosphingobium}, Hassallia, Ahniella, Aquicella, Ferruginibacter, BIyi10, Curvibacter, Acinetobacter, Chryseotalea, Rhodovastum, Solirubrobacter, Anaerolinea, Aeromicrobium, Candidatus Nitrosoarchaeum, Steroidobacter, Algoriphagus, Noviherbaspirillum, Candidatus Omnitrophusr & 
+% \underline{Subgroup 10}, Dyadobacter, Dechloromonas, Inhella, Leeia, Pararhizobium, Arenimonas, Plot4-2H12, Microbacterium, Afipia, Hydrogenispora, \underline{Fimbriiglobus}, Constrictibacter, Brevifollis, BIyi10, Candidatus Berkiella, DSSD61, Pseudarthrobacter, \underline{Bauldia}, Ferribacterium, IS-44, Methyloceanibacter, Ketobacter \\ \bottomrule
+% \end{tabular*}
+% \end{table}
+% % *************************
+
+% % --- ShapG TABLE PART 1 (RF Models) ---
+% \begin{table}[!h] 
+% \caption{Top 20 ShapG Features for RF Configurations, with the top three underlined}
+% \label{tab:shapG_features_rf}
+% \footnotesize 
+% \setlength{\tabcolsep}{4pt}
+% \renewcommand{\arraystretch}{1.2} 
+% \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lp{3.3cm}p{3.3cm}p{3.3cm}}
+% \toprule
+% \textbf{Model} & \textbf{Autoclave} & \textbf{HeatRoot} & \textbf{Soil} \\ \midrule
+% AVITI\_RF & 
+% \underline{Rhodovarius}, \underline{Xanthomonas}, \underline{Mesobacillus}, Kaistia, Telmatocola, Pseudofulvimonas, Gemmata, Imperialibacter, Chthonobacter, Emticicia, Niallia, Ramlibacter, Reyranella, Baekduia, UBA6140, BBMC-4, Conexibacter, Bdellovibrio, AKYG587, Neobacillus & 
+% \underline{Micropepsis}, \underline{Thermaerobacter}, \underline{Lacihabitans}, Chryseotalea, Algoriphagus, Spirochaeta, Acetobacter, Thermobacillus, Candidatus Arcanobacter, [Polyangium] brachysporum group, Niastella, Salinispira, Luteibacter, Halocella, Phreatobacter, Tepidanaerobacter, Candidatus Bealeia, Erythrobacter, Massilia, Leeia & 
+% Niveispirillum, \underline{SWB02}, Roseimaritima, BIyi10, Ureibacillus, oc32, Polycyclovorans, C1-B045, Methylobacter, Sneathiella, Ideonella, Spirochaeta 2, YC-ZSS-LKJ147, Fimbriiglobus, Acidovorax, \underline{Pusillibacter}, Croceibacterium, \underline{Chthonobacter}, Zavarzinella, Zhengella, Planifilum, Sphingorhabdus, Agrobacterium, Azotobacter, Labrys, Gemmata, Candidatus Solibacter, Parafilimonas, Planctopirus, Fermentimonas \\ \midrule
+
+% MiSeq\_RF & 
+% \underline{mle1-7}, \underline{Imperialibacter}, \underline{Chryseotalea}, Dokdonella, YC-ZSS-LKJ147, Parageobacillus, Ferruginibacter, Hassallia, Rhodoplanes, Phenylobacterium, Dinghuibacter, Ilumatobacter, Chryseolinea, Abditibacterium, Chthoniobacter, Bauldia, Sumerlaea, Hirschia, Sediminibacterium, Methylobacillus & 
+% \underline{Cytophaga}, \underline{Spirochaeta}, \underline{Paludibaculum}, Tepidisphaera, Chitinophaga, Niastella, Haliscomenobacter, Ferruginibacter, Chitinophaga, Agriterribacter, Pedobacter, Bdellovibrio, Pseudorhodoplanes, Thermomonas, Chryseotalea, OLB12, Hassallia, Ureibacillus, Phenylobacterium, Luteolibacter & 
+% SWB02, Rubrivivax, Kineobactrum, Massilia, Planctomicrobium, Polycyclovorans, Ferribacterium, mle1-7, CL500-3, Sphingomonas, Shinella, Coxiella, Paludibaculum, Pseudomonas, Xylophilus, Duganella, Geomonas, Pirellula, Dechloromonas, OLB12, Luteolibacter, Croceibacterium, \underline{Bradyrhizobium}, Methylophilus, Sphingorhabdus, Sphingopyxis, Pedomicrobium, Arsenicitalea, Gemmata, Methylibium, Asticcacaulis, JGI 0001001-H03, Dokdonella, Bosea, Gaiella, \underline{Ilumatobacter} \\ \midrule
+
+% NovaSeq\_RF & 
+% \underline{Mesobacillus}, \underline{Brucella}, \underline{Ruficoccus}, Kribbella, Candidatus Protochlamydia, Gemmata, Noviherbaspirillum, Desulfovibrio, Snodgrassella, Ramlibacter, Immundisolibacter, Ammoniphilus, Subgroup 10, Papillibacter, Altericroceibacterium, Sorangium, Stenotrophobacter, Aquisphaera, Dechloromonas, Methylobacillus & 
+% \underline{Erythrobacter}, \underline{Algoriphagus}, \underline{Lachnospiraceae}, UCG-004, Apilactobacillus, Diaphorobacter, Phycocomes, Desulfopila, Phragmitibacter, Bordetella, Meiothermus, Actinokineospora, Geothrix, Fundidesulfovibrio, Imperialibacter, CL500-3, Caedibacter, Acrocarpospora, Rhodovastum, Skermanella, Gemmobacter & 
+% Rhodopila, Solimonas, Pararhizobium, BIyi10, Methanosarcina, Inhella, Dyella, Microbacterium, Ferribacterium, \underline{Runella}, Ketobacter, Methyloceanibacter, Pseudarthrobacter, Bauldia, IS-44, Fimbriiglobus, Brevifollis, \underline{Plot4-2H12}, DSSD61, Dechloromonas, Pusillibacter, Afipia, Cerasicoccus, Caldicoprobacter, Constrictibacter, \underline{Candidatus Berkiella}, Ruminofilibacter, Dyadobacter, Hydrogenispora, Flavimaricola, Amaricoccus, Leeia \\ \bottomrule
+% \end{tabular*}
+% \end{table}
+
+% % --- ShapG TABLE PART 2 (LSVM Models) ---
+% \begin{table}[!h] 
+% \caption{Top 20 ShapG Features for LSVM Configurations, with the top three underlined }
+% \label{tab:shapG_features_lsvm}
+% \footnotesize
+% \setlength{\tabcolsep}{4pt}
+% \renewcommand{\arraystretch}{1.2}
+% \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lp{3.3cm}p{3.3cm}p{3.3cm}}
+% \toprule
+% \textbf{Model} & \textbf{Autoclave} & \textbf{HeatRoot} & \textbf{Soil} \\ \midrule
+% AVITI\_LSVM & 
+% \underline{Xanthomonas}, \underline{Mesobacillus}, \underline{Pseudofulvimonas}, Kaistia, Pusillibacter, Rhodovarius, Imperialibacter, Baekduia, Methanosarcina, Aetherobacter, Pelotalea, Erythrobacter, OLB13, Hirschia, BBMC-4, Niallia, Methylobacter, Niastella, Tepidisphaera, Emticicia & 
+% \underline{Erythrobacter}, \underline{Salinispira}, \underline{Acetobacter}, Luteibacter, Spirochaeta, Propionicicella, Tepidanaerobacter, Thermaerobacter, Leeia, [Polyangium] brachysporum group, Mycobacterium, OLB13, Lentzea, Roseateles, Sediminibacterium, Lacihabitans, Candidatus Bealeia, Candidatus Ovatusbacter, Cavicella, Allocatelliglobosispora & 
+% Niveispirillum, \underline{SWB02}, Roseimaritima, \underline{BIyi10}, Ureibacillus, oc32, Polycyclovorans, C1-B045, Methylobacter, Sneathiella, Ideonella, Spirochaeta 2, Fimbriiglobus, Cellvibrio, Acidovorax, Pusillibacter, Croceibacterium, \underline{Chthonobacter}, Zavarzinella, Planifilum, Sphingorhabdus, Agrobacterium, Azotobacter, Hyphomicrobium, Labrys, Candidatus Solibacter, Gemmata, Parafilimonas, Planctopirus, Fermentimonas \\ \midrule
+
+% MiSeq\_LSVM & 
+% \underline{Mesobacillus}, \underline{mle1-7}, \underline{YC-ZSS-LKJ147}, Imperialibacter, Panacagrimonas, Dinghuibacter, Parageobacillus, Chryseotalea, Rhodoplanes, Abditibacterium, Hassallia, Ferruginibacter, Chryseobacterium, Bauldia, Chthoniobacter, Chryseolinea, Dokdonella, Lelliottia, Aquicella, Methyloceanibacter & 
+% \underline{Pelagibius}, \underline{YC-ZSS-LKJ147}, \underline{Methylotenera}, UBA6140, Hydrogenophaga, Pseudolabrys, Rhodoferax, Aetherobacter, Pedobacter, Phaselicystis, Ilumatobacter, Paludibaculum, Chthonobacter, Cereibacter, Cytophaga, Ellin6055, Gemmobacter, Legionella, Ferruginibacter, Ureibacillus & 
+% \underline{SWB02}, Rubrivivax, Kineobactrum, Planctomicrobium, Massilia, Polycyclovorans, Ferribacterium, mle1-7, CL500-3, Sphingomonas, Shinella, Coxiella, Paludibaculum, Pseudomonas, CL500-29 marine group, Geomonas, Pirellula, Dechloromonas, Luteolibacter, OLB12, Acidibacter, Croceibacterium, Bradyrhizobium, Aquicella, \underline{Methylophilus}, Sphingorhabdus, MND1, Sphingopyxis, Pedomicrobium, Arsenicitalea, Gemmata, Opitutus, JGI 0001001-H03, \underline{Dokdonella}, Bosea, Gaiella, Ilumatobacter \\ \midrule
+
+% NovaSeq\_LSVM & 
+% \underline{Mesobacillus},\underline{Brucella}, \underline{Candidatus Protochlamydia}, Ammoniphilus, Immundisolibacter, Desulfovibrio, Aquisphaera, Brevibacillus, Niallia, Snodgrassella, Crocinitomix, OLB13, Taonella, Pseudoxanthobacter, Cupriavidus, Povalibacter, Sandaracinobacter, Asticcacaulis, Ramlibacter, Sorangium & 
+% \underline{Erythrobacter}, \underline{Verticiella}, \underline{Lachnospiraceae UCG-004}, Phragmitibacter, Meiothermus, Phycocomes, Desulfopila, Diaphorobacter, Caedibacter, Kribbella, Geothrix, Aquicella, Actinokineospora, Bordetella, Tuberibacillus, Fundidesulfovibrio, Thermoclostridium, Hydrogenispora, Edaphocola, Novosphingobium & 
+% Methanosarcina, Solimonas, Pararhizobium, BIyi10, Inhella, Dyella, Microbacterium, Ferribacterium, Runella, Ketobacter, \underline{Methyloceanibacter}, Pseudarthrobacter, Bauldia, IS-44, Fimbriiglobus, Brevifollis, \underline{Plot4-2H12}, DSSD61, Dechloromonas, Pusillibacter, Afipia, Cerasicoccus, Subgroup 10, Caldicoprobacter, \underline{Constrictibacter}, Ruminofilibacter, Flavimaricola, Dyadobacter, Hydrogenispora, Candidatus Berkiella, Amaricoccus, Leeia \\ \bottomrule
+% \end{tabular*}
+% \end{table}
+% % *******************************
+% \FloatBarrier
+% \begin{table}[!h] % Force to the top to avoid footer issues
+% \caption{Abundance of SWB02 in AVITI and MiSeq for each sample}
+% \label{tab:SWB02-abundances}
+% \small
+% \centering
+% \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcc|lcc}
+% \toprule
+% \textbf{Sample} & \textbf{AVITI} & \textbf{MiSeq} & \textbf{Sample} & \textbf{AVITI} & \textbf{MiSeq} \\
+% \midrule
+% 1  & 1287.05 & 212.76  & 19 & 1721.00 & 574.50  \\
+% 2  & 1536.97 & 416.45  & 20 & 1491.26 & 271.29  \\
+% 3  & 1243.75 & 259.05  & 21 & 1355.47 & 454.01  \\
+% 4  & 2131.70 & 664.73  & 22 & 719.00  & 209.20  \\
+% 5  & 1159.09 & 309.68  & 23 & 642.03  & 298.30  \\
+% 6  & 1320.88 & 269.61  & 24 & 471.66  & 243.95  \\
+% 7  & 2178.28 & 661.71  & 25 & 5044.49 & 1347.51 \\
+% 8  & 1006.44 & 286.64  & 26 & 4397.13 & 1139.69 \\
+% 9  & 873.85  & 303.73  & 27 & 3358.36 & 1225.41 \\
+% 10 & 556.73  & 57.66   & 28 & 7560.71 & 1757.59 \\
+% 11 & 738.17  & 250.55  & 29 & 4935.85 & 1547.24 \\
+% 12 & 1116.83 & 325.99  & 30 & 5614.69 & 948.63  \\
+% 13 & 830.65  & 266.09  & 31 & 3931.46 & 1721.11 \\
+% 14 & 1256.49 & 271.96  & 32 & 4320.56 & 1022.49 \\
+% 15 & 5801.06 & 1368.86 & 33 & 3508.79 & 1139.10 \\
+% 16 & 743.12  & 199.90  & 34 & 5077.05 & 1336.37 \\
+% 17 & 1437.65 & 142.32  & 35 & 5115.54 & 1072.82 \\
+% 18 & 585.20  & 110.23  & 36 & 3090.27 & 710.96  \\
+% \bottomrule
+% \end{tabular*}
+% \end{table}
+
+\bmhead{Acknowledgements}
+Authors gratefully acknowledge Nicoletta Felice for performing DNA extraction, and Dr. Massimo Guazzini for setting up the field experiment and providing critical insight.
+
+
+\section*{Declarations}
+\begin{itemize}
+\item \textbf{Funding:}
+This work was supported by the Departmental Strategic Plan (PSD) of the University of Udine - Interdepartmental Project on Artificial Intelligence (2020-25) to Fabio Marroni and Giuseppe Serra
+
+
+\item \textbf{Conflict of interest:}
+No competing interests.
+
+\item \textbf{Consent for publication:}
+Not applicable.
+
+\item \textbf{Data availability:}
+Raw sequences used in the present study are available in the NCBI Sequence Read Archive under the accession PRJNA1217140.
+
+\item \textbf{Materials availability:}
+Not applicable.
+
+\item \textbf{Code availability:}
+All codes and instructions used to perform analyses are available from 
+\href{https://github.com/hsnvnd/AI-in-Metagenomics}{this GitHub notebook} and \href{https://github.com/genomeud/intevine_AI} {this Github notebook}.
+
+\item \textbf{Author Contribution:}
+{FM conceived the study and provided experimental material. FM and GS designed the experiments. SR coordinated library preparation and sequencing. SB conducted bioinformatics analysis for classification of metabarcoding reads. FH implemented ML and AI algorithms and conducted data analysis. AA helped with the implementation of ML and AI algorithms and data analysis. F.H., S.B., and F.M. wrote the manuscript.
+F.M. and G.S. supervised the project. All authors reviewed and approved the final version of the
+manuscript.}
+\end{itemize}
+
+
+%%===================================================%%
+%% For presentation purpose, we have included        %%
+%% \bigskip command. Please ignore this.             %%
+%%===================================================%%
+
+
+% \begin{appendices}
+
+% \section{Section title of first appendix}\label{secA1}
+
+% An appendix contains supplementary information that is not an essential part of the text itself but which may be helpful in providing a more comprehensive understanding of the research problem or it is information that is too cumbersome to be included in the body of the paper.
+
+%%=============================================%%
+%% For submissions to Nature Portfolio Journals %%
+%% please use the heading ``Extended Data''.   %%
+%%=============================================%%
+
+%%=============================================================%%
+%% Sample for another appendix section			       %%
+%%=============================================================%%
+
+%% \section{Example of another appendix section}\label{secA2}%
+%% Appendices may be used for helpful, supporting or essential material that would otherwise 
+%% clutter, break up or be distracting to the text. Appendices can consist of sections, figures, 
+%% tables and equations etc.
+
+% \end{appendices}
+
+%%===========================================================================================%%
+%% If you are submitting to one of the Nature Portfolio journals, using the eJP submission   %%
+%% system, please include the references within the manuscript file itself. You may do this  %%
+%% by copying the reference list from your .bbl file, paste it into the main manuscript .tex %%
+%% file, and delete the associated \verb+\bibliography+ commands.                            %%
+%%===========================================================================================%%
+
+\bibliography{sn-bibliography}
+
+% \section*{Additional files}
+% File name: Additional file 1 \\
+% File format: .zip \\
+% Title of data: SHAP Soil beeswarm plots \\
+% Description of data: Beeswarm plots for SHAP (Soil dataset)
+
+% \noindent File name: Additional file 2 \\
+% File format: .zip \\
+% Title of data: ShapG Soil beeswarm plots \\
+% Description of data: Beeswarm plots for ShapG (Soil dataset)
+
+% \noindent File name: Additional file 3  \\
+% File format: .zip \\
+% Title of data: SHAP Autoclave beeswarm plots \\
+% Description of data: Beeswarm plots for SHAP (Autoclave dataset)
+
+% \noindent File name: Additional file 4  \\
+% File format: .zip \\
+% Title of data: ShapG Autoclave beeswarm plots \\
+% Description of data: Beeswarm plots for ShapG (Autoclave dataset)
+
+% \noindent File name: Additional file 5  \\
+% File format: .zip \\
+% Title of data: SHAP Heatroot beeswarm plots \\
+% Description of data: Beeswarm plots for SHAP (Heatroot dataset)
+
+% \noindent File name: Additional file 6 \\
+% File format: .zip \\
+% Title of data: ShapG Heatroot beeswarm plots \\
+% Description of data: Beeswarm plots for ShapG (Heatroot dataset)
+\section*{Additional Files}
+\begin{flushleft}
+File name: Additional file 1 \\
+File format: .pdf \\
+Title of data: Supplementary\_File\_1\_Tables \\
+Description of data: Tables S1–S7 of the manuscript
+\end{flushleft}
+
+\begin{flushleft}
+File name: Additional file 2 \\
+File format: .zip \\
+Title of data: Supplementary\_File\_1\_SHAP\_Soil \\
+Description of data: Beeswarm plots for SHAP (Soil dataset)
+\end{flushleft}
+\begin{flushleft}
+File name: Additional file 3 \\
+File format: .zip \\
+Title of data: Supplementary\_File\_2\_ShapG\_Soil \\
+Description: Beeswarm plots for ShapG (Soil dataset)
+\end{flushleft}
+\begin{flushleft}
+File name: Additional file 4 \\
+File format: .zip \\
+Title of data: Supplementary\_File\_3\_SHAP\_Autoclave \\
+Description: Beeswarm plots for SHAP (Autoclave dataset)
+\end{flushleft}
+\begin{flushleft}
+File name: Additional file 5 \\
+File format: .zip \\
+Title of data: Supplementary\_File\_4\_ShapG\_Autoclave \\
+Description: Beeswarm plots for ShapG (Autoclave dataset)
+\end{flushleft}
+\begin{flushleft}
+File name: Additional file 6 \\
+File format: .zip \\
+Title of data: Supplementary\_File\_5\_SHAP\_Heatroot \\
+Description: Beeswarm plots for SHAP (Heatroot dataset)
+\end{flushleft}
+\begin{flushleft}
+File name: Additional file 7 \\
+File format: .zip \\
+Title of data: Supplementary\_File\_6\_ShapG\_Heatroot \\
+Description: Beeswarm plots for ShapG (Heatroot dataset)
+\end{flushleft}
+
+
+%% 1. Set the style (sn-mathphys-num is standard for this template)
+%% 2. Point to your file (use the name "a" without the .bib extension)
+% \bibliography{biblio}
+
+\end{document}
